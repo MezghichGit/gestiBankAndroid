@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity {
     String myEmail="";
     String myPassword="";
     User user;
-    String  role = "";
+    String  role = "invalide";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,15 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     user = response.body();
-                    role = user.getRole();
+                    if(user.getEmail().equals(myEmail) && user.getPassword().equals(myPassword))
+                    {
+                        role = user.getRole();
+                    }
+                    else
+                    {
+
+                        Toast.makeText(Login.this, "Login ou Password invalides", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
             @Override
@@ -95,6 +103,7 @@ public class Login extends AppCompatActivity {
                          Intent intent3 = new Intent(Login.this, Admin.class);
                          startActivity(intent3);
                 break;
+            default : 
         }
     }
 
