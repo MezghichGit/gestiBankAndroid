@@ -63,14 +63,39 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     user = response.body();
-                    if(user.getEmail().equals(myEmail) && user.getPassword().equals(myPassword))
-                    {
-                        role = user.getRole();
+                    if(user!=null){
+                        if(user.getEmail().equals(myEmail) && user.getPassword().equals(myPassword))
+                        {
+                            role = user.getRole();
+                            switch(role)
+                            {
+                                case "AGENT" : //.... redirection vers dashboard Agent
+                                    Intent intent1 = new Intent(Login.this, Agent.class);
+                                    startActivity(intent1);
+                                    break;
+
+                                case "CLIENT" : //.... redirection vers dashboard Agent
+                                    Intent intent2 = new Intent(Login.this, Client.class);
+                                    startActivity(intent2);
+                                    break;
+
+                                case "ADMIN" : //.... redirection vers dashboard Agent
+                                    Intent intent3 = new Intent(Login.this, Admin.class);
+                                    startActivity(intent3);
+                                    break;
+                                default :
+                            }
+                        }
+                        else
+                        {
+
+                            Toast.makeText(Login.this, "Login ou Password invalides", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else
                     {
 
-                        Toast.makeText(Login.this, "Login ou Password invalides", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Utilisateur inexistant", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -87,24 +112,7 @@ public class Login extends AppCompatActivity {
         //role =user.getRole();
         //Redirection vers le dashboard en question : Admin, Client ou Agent
 
-        switch(role)
-        {
-            case "AGENT" : //.... redirection vers dashboard Agent
-                         Intent intent1 = new Intent(Login.this, Agent.class);
-                         startActivity(intent1);
-                break;
 
-            case "CLIENT" : //.... redirection vers dashboard Agent
-                         Intent intent2 = new Intent(Login.this, Client.class);
-                         startActivity(intent2);
-                break;
-
-            case "ADMIN" : //.... redirection vers dashboard Agent
-                         Intent intent3 = new Intent(Login.this, Admin.class);
-                         startActivity(intent3);
-                break;
-            default : 
-        }
     }
 
 
