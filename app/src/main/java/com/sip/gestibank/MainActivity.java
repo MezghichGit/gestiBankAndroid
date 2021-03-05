@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void interfaceConversionDevise(View v){
 
+        Intent intent = new Intent(MainActivity.this, Currency_Activity.class);
+        startActivity(intent);
     }
 
 

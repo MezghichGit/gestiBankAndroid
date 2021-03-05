@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GESTIBANK"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Agent"></activity>
+        <activity android:name=".Currency_Activity"></activity>
+        <activity android:name=".Agent" />
         <activity android:name=".Client" />
         <activity android:name=".Admin" />
         <activity android:name=".Login" />
